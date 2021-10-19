@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:57:58 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 13:26:12 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:06:41 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		if (x[i] == '\0' && y[i] == '\0')
 			break ;
-		if (x[i] > y[i])
-			return (1);
-		if (x[i] < y[i])
-			return (-1);
+		if (x[i] != y[i])
+			return (x[i] - y[i]);
 		i++;
 		n--;
 	}

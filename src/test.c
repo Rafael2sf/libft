@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 13:29:53 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:01:52 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	int	i;
 
 	i = -275;
-	printf("Cheking ft_is...\t");
+	printf("=ft_is...\t");
 	while (i != 275)
 	{
 		if ((ft_isalpha(i) != isalpha(i)) 
@@ -38,7 +38,7 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlen\t");
+	printf("=ft_strlen\t");
 	if (ft_strlen("Hello World") != strlen("Hello World")
 		|| ft_strlen("\0") != strlen("\0")
 		|| ft_strlen("Abc\0Def\0") != strlen("Abc\0Def\0")
@@ -57,7 +57,7 @@ int	main(void)
 	i = 0;
 	ft_memset(b1, '\0', 42);
 	memset(b2, '\0', 42);
-	printf("Cheking ft_memset\t");
+	printf("=ft_memset\t");
 	while (i < 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -72,7 +72,7 @@ int	main(void)
 	
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_bzero\t");
+	printf("=ft_bzero\t");
 	b1[41] = '\0';
 	b2[41] = '\0';
 	while (i > 0)
@@ -89,7 +89,7 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_memset\t");
+	printf("=ft_memset\t");
 	while (i != 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -106,7 +106,7 @@ int	main(void)
 	
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_memmove\t");
+	printf("=ft_memmove\t");
 
 	i = 0;
 	ft_bzero(b1, 41);
@@ -127,7 +127,7 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlcpy\t");
+	printf("=ft_strlcpy\t");
 	while(i >= 0)
 	{
 		ft_memset(b2, 'c', 41 - i);
@@ -149,7 +149,7 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlcat\t");
+	printf("=ft_strlcat\t");
 
 	char b3[42];
 	ft_memcpy(b3, "0123456789abcdef", 17);
@@ -171,7 +171,7 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_toupper/lower");
+	printf("=ft_toupper/lower");
 	i = 0;
 	ft_bzero(b1, 41);
 	ft_memcpy(b1, "AaB0~1@&^09,pw1AzDe\0", 21);
@@ -192,37 +192,43 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking strchar/strrchar");
+	printf("=ft_str/memchar/strrchar");
 	ft_bzero(b1, 42);
 	ft_strlcpy(b1, "abcd-dcba", 10);
 	if (ft_strchr(b1, 'a') != strchr(b1, 'a')
-		|| ft_strrchr(b1, 'b') != strrchr(b1, 'b'))
+		|| ft_strrchr(b1, 'b') != strrchr(b1, 'b')
+		|| ft_memchr(b1, 'c', 10) != memchr(b1, 'c', 10))
+	{
+		printf("\tNope\n");
+		exit(10);
+	}
+	if (ft_strchr(b1, 'e') != strchr(b1, 'e')
+		|| ft_strrchr(b1, 'f') != strrchr(b1, 'f')
+		|| ft_memchr(b1, 'g', 10) != memchr(b1, 'g', 10))
 	{
 		printf("\tNope\n");
 		exit(10);
 	}
 
-	printf("\t+Aproved!\n");
+	printf("+Aproved!\n");
 
-	printf("Cheking strncmp\t\t");
+	printf("=ft_strncmp\t");
 	bzero(b1, 42);	
 	bzero(b2, 42);	
 	strlcpy(b1, "0123456789abcdef", 17);
 	strlcpy(b2, "0123456789abcdef", 17);
-	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	if (ft_strncmp(b1, b2, 16) != strncmp(b1, b2, 16))
 	{
 		printf("\tNope\n");
 		exit(11);	
 	}
 	b1[5] += 5;
-	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	if (ft_strncmp(b1, b2, 16) != strncmp(b1, b2, 16))
 	{
 		printf("\tNope\n");
 		exit(11);	
 	}
-	b1[5] -= 5;
-	b2[5] += 5;
-	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	if (ft_strncmp(b2, b1, 16) != strncmp(b2, b1, 16))
 	{
 		printf("\tNope\n");
 		exit(11);	
@@ -230,7 +236,46 @@ int	main(void)
 	
 	printf("\t+Aproved!\n");
 
-	printf("Checking functions with null input\n");
+	printf("=ft_memcmp\t");
+	b1[5] -= 5;
+	if (ft_memcmp(b1, b2, 16) != memcmp(b1, b2, 16))
+	{
+		printf("\tNope\n");
+		exit(12);	
+	}
+	b1[5] += 5;
+	if (ft_memcmp(b1, b2, 16) != memcmp(b1, b2, 16))
+	{
+		printf("\tNope\n");
+		exit(12);	
+	}
+	if (ft_memcmp(b2, b1, 16) != memcmp(b2, b1, 16))
+	{
+		printf("\tNope\n");
+		exit(12);	
+	}
+
+	printf("\t+Aproved!\n");
+	printf("=ft_strnstr\t");
+
+	ft_bzero(b1, 42);
+	ft_strlcpy(b1, "0123456789abcdef", 17);
+	if ((strnstr(b1, "abc", 12) != ft_strnstr(b1, "abc", 12))
+		|| (strnstr(b1, "42", 16) != ft_strnstr(b1, "42", 16))
+		|| (strnstr(b1, "", 16) != ft_strnstr(b1, "", 16))
+	)
+	{
+		printf("\tNope\n");
+		exit(13);		
+	}
+
+	ft_bzero(b1, 42);
+	ft_strlcpy(b1, "012345678901", 13);
+	printf("\n");
+	printf("%d\n", atoi(b1));
+	
+	printf("\t+Aproved!\n");
+	printf("Checking all with NULL");
 
 	ft_bzero(NULL, 42);
 	ft_memset(NULL, 0, 42);
@@ -240,7 +285,10 @@ int	main(void)
 	ft_strlcpy(NULL, NULL, 42);
 	ft_strlcat(NULL, NULL, 42);
 	// Not applied on strncmp
+	ft_strchr(NULL, 42);
+	ft_strrchr(NULL, 42);
+	ft_memchr(NULL, 42, 42);
 
-	printf("GG!\n");
+	printf("\tGG!\n");
 	return (0);
 }

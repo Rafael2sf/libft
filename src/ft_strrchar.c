@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:23:39 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 12:47:05 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:39:38 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*tmp;
+	char	*res;
 
+	res = NULL;
 	if (s)
 	{
 		tmp = (char *)s;
 		while (*tmp)
-			tmp++;
-		while (tmp != s)
 		{
 			if (*tmp == c)
-				return (tmp);
-			tmp--;
+				res = tmp;
+			tmp++;
 		}
 	}
-	return (NULL);
+	return (res);
 }
