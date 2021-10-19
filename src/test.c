@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 16:01:52 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:53:05 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ int	main(void)
 		printf("\t-Nope\n");	
 		exit(2);
 	}
-
 	printf("\t+Aproved!\n");
-
+	
+	printf("=ft_memset\t");
 	char b1[42];
 	char b2[42];
 	i = 0;
 	ft_memset(b1, '\0', 42);
 	memset(b2, '\0', 42);
-	printf("=ft_memset\t");
 	while (i < 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -69,7 +68,6 @@ int	main(void)
 		}
 		i++;
 	}
-	
 	printf("\t+Aproved!\n");
 
 	printf("=ft_bzero\t");
@@ -86,7 +84,6 @@ int	main(void)
 		}
 		i--;
 	}
-
 	printf("\t+Aproved!\n");
 
 	printf("=ft_memset\t");
@@ -103,11 +100,9 @@ int	main(void)
 			exit(5);		
 		}
 	}
-	
 	printf("\t+Aproved!\n");
 
 	printf("=ft_memmove\t");
-
 	i = 0;
 	ft_bzero(b1, 41);
 	ft_bzero(b2, 41);
@@ -124,7 +119,6 @@ int	main(void)
 		}
 		i++;
 	}
-
 	printf("\t+Aproved!\n");
 
 	printf("=ft_strlcpy\t");
@@ -150,11 +144,9 @@ int	main(void)
 	printf("\t+Aproved!\n");
 
 	printf("=ft_strlcat\t");
-
 	char b3[42];
 	ft_memcpy(b3, "0123456789abcdef", 17);
 	b3[17] = '\0';
-	
 	ft_bzero(b1, 41);
 	ft_bzero(b2, 41);
 	i = 17;
@@ -168,7 +160,6 @@ int	main(void)
 		}
 		i--;
 	}
-
 	printf("\t+Aproved!\n");
 
 	printf("=ft_toupper/lower");
@@ -189,14 +180,15 @@ int	main(void)
 		}
 		i++;
 	}
-
 	printf("\t+Aproved!\n");
 
 	printf("=ft_str/memchar/strrchar");
 	ft_bzero(b1, 42);
 	ft_strlcpy(b1, "abcd-dcba", 10);
 	if (ft_strchr(b1, 'a') != strchr(b1, 'a')
+		|| ft_strchr(b1, '\0') != strchr(b1, '\0')
 		|| ft_strrchr(b1, 'b') != strrchr(b1, 'b')
+		|| ft_strrchr(b1, '\0') != strrchr(b1, '\0')
 		|| ft_memchr(b1, 'c', 10) != memchr(b1, 'c', 10))
 	{
 		printf("\tNope\n");
@@ -209,7 +201,6 @@ int	main(void)
 		printf("\tNope\n");
 		exit(10);
 	}
-
 	printf("+Aproved!\n");
 
 	printf("=ft_strncmp\t");
@@ -254,10 +245,9 @@ int	main(void)
 		printf("\tNope\n");
 		exit(12);	
 	}
-
 	printf("\t+Aproved!\n");
-	printf("=ft_strnstr\t");
 
+	printf("=ft_strnstr\t");
 	ft_bzero(b1, 42);
 	ft_strlcpy(b1, "0123456789abcdef", 17);
 	if ((strnstr(b1, "abc", 12) != ft_strnstr(b1, "abc", 12))
@@ -268,15 +258,18 @@ int	main(void)
 		printf("\tNope\n");
 		exit(13);		
 	}
-
-	ft_bzero(b1, 42);
-	ft_strlcpy(b1, "012345678901", 13);
-	printf("\n");
-	printf("%d\n", atoi(b1));
-	
 	printf("\t+Aproved!\n");
-	printf("Checking all with NULL");
 
+	printf("=ft_atoi\t");
+	printf("\t?No test\n");
+
+	printf("=ft_calloc\t");
+	printf("\t?No test\n");
+
+	char *tmp = ft_strdup(b1);
+	printf("\n%s\n", tmp);
+	
+	printf("Checking all with NULL");
 	ft_bzero(NULL, 42);
 	ft_memset(NULL, 0, 42);
 	ft_memcpy(NULL, NULL, 42);
@@ -288,7 +281,8 @@ int	main(void)
 	ft_strchr(NULL, 42);
 	ft_strrchr(NULL, 42);
 	ft_memchr(NULL, 42, 42);
-
+	// Not applied on memcmp
+	ft_strnstr(NULL,NULL, 42);
 	printf("\tGG!\n");
 	return (0);
 }
