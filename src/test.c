@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/18 18:07:17 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 10:22:51 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 int	main(void)
 {
 	int	i;
-
-	printf("@42student Running libft tester by rafernan, dont forget to run norm!\n\tWon't verify null inputs - @42student\n\n");
 
 	i = -275;
 	printf("Cheking ft_is...");
@@ -105,8 +103,30 @@ int	main(void)
 			exit(5);		
 		}
 	}
+	
 	printf("\t+Aproved!\n");
-	printf("ft_memmove\tskipped\n");
+
+	printf("Cheking ft_memmove");
+
+	i = 0;
+	ft_bzero(b1, 41);
+	ft_bzero(b2, 41);
+	strlcpy(b1, "abcdef9876543210\0", 17);
+	ft_strlcpy(b2, "abcdef9876543210\0", 17);
+	while (i != 17)
+	{
+		memcpy(b1 + i, b1 + i / 2, i + 1);
+		ft_memcpy(b2 + i, b2 + i / 2, i + 1);
+		printf(" %s %s %i %d %d\n", b1, b2, i, i / 2, i + 1);
+		if (strcmp(b1, b2) != 0)
+		{
+			printf("\t-Nope\n");
+			exit(7);
+		}
+		i++;
+	}
+
+	printf("\t+Aproved!\n");
 
 	printf("Cheking ft_strlcpy");
 	while(i >= 0)
@@ -130,22 +150,38 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlcat\n");
+	printf("Cheking ft_strlcat");
 
 	char b3[42];
-	ft_memset(b3, '?', 41);
-	b3[41] = '\0';
+	ft_memcpy(b3, "0123456789abcdef", 17);
+	b3[17] = '\0';
 	
 	ft_bzero(b1, 41);
 	ft_bzero(b2, 41);
-	i = 0;
-	while (i != 43)
+	i = 17;
+	while (i >= 0)
 	{
-		printf("%d | %zu - %s\n", i, ft_strlcat(b2, b3, i), b2);
-		i++;
+		if (strlcat(b1, b3 + i, 17 - i) != ft_strlcat(b2, b3 + i, 17 - i)
+			|| strcmp(b1, b2) != 0)
+		{
+			printf("Nope. --");
+		}
+		i--;
 	}
 
 	printf("\t+Aproved!\n");
+
+	printf("Checking functions with null input\n");
+
+	ft_bzero(NULL, 42);
+	ft_memset(NULL, 0, 42);
+	ft_memcpy(NULL, NULL, 42);
+	ft_memmove(NULL, NULL, 42);
+	ft_strlen(NULL);
+	ft_strlcpy(NULL, NULL, 42);
+	ft_strlcat(NULL, NULL, 42);
 	
+	printf("\nGG!");
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:45:45 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/18 17:19:46 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 10:19:33 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	srcptr = (char *)(src);
 	if (dstptr && srcptr)
 	{
-		while (n--)
+		while (n)
+		{
 			*dstptr++ = *srcptr++;
+			n--;
+		}
 	}
 	return (dst);
 }
