@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 10:22:51 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/19 13:29:53 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	int	i;
 
 	i = -275;
-	printf("Cheking ft_is...");
+	printf("Cheking ft_is...\t");
 	while (i != 275)
 	{
 		if ((ft_isalpha(i) != isalpha(i)) 
@@ -38,7 +38,7 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlen");
+	printf("Cheking ft_strlen\t");
 	if (ft_strlen("Hello World") != strlen("Hello World")
 		|| ft_strlen("\0") != strlen("\0")
 		|| ft_strlen("Abc\0Def\0") != strlen("Abc\0Def\0")
@@ -55,9 +55,9 @@ int	main(void)
 	char b1[42];
 	char b2[42];
 	i = 0;
-	memset(b1, '\0', 42);
+	ft_memset(b1, '\0', 42);
 	memset(b2, '\0', 42);
-	printf("Cheking ft_memset");
+	printf("Cheking ft_memset\t");
 	while (i < 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -72,7 +72,7 @@ int	main(void)
 	
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_bzero");
+	printf("Cheking ft_bzero\t");
 	b1[41] = '\0';
 	b2[41] = '\0';
 	while (i > 0)
@@ -89,7 +89,7 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_memset");
+	printf("Cheking ft_memset\t");
 	while (i != 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -106,7 +106,7 @@ int	main(void)
 	
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_memmove");
+	printf("Cheking ft_memmove\t");
 
 	i = 0;
 	ft_bzero(b1, 41);
@@ -116,8 +116,7 @@ int	main(void)
 	while (i != 17)
 	{
 		memcpy(b1 + i, b1 + i / 2, i + 1);
-		ft_memcpy(b2 + i, b2 + i / 2, i + 1);
-		printf(" %s %s %i %d %d\n", b1, b2, i, i / 2, i + 1);
+		ft_memmove(b2 + i, b2 + i / 2, i + 1);
 		if (strcmp(b1, b2) != 0)
 		{
 			printf("\t-Nope\n");
@@ -128,7 +127,7 @@ int	main(void)
 
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlcpy");
+	printf("Cheking ft_strlcpy\t");
 	while(i >= 0)
 	{
 		ft_memset(b2, 'c', 41 - i);
@@ -150,7 +149,7 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("Cheking ft_strlcat");
+	printf("Cheking ft_strlcat\t");
 
 	char b3[42];
 	ft_memcpy(b3, "0123456789abcdef", 17);
@@ -164,11 +163,71 @@ int	main(void)
 		if (strlcat(b1, b3 + i, 17 - i) != ft_strlcat(b2, b3 + i, 17 - i)
 			|| strcmp(b1, b2) != 0)
 		{
-			printf("Nope. --");
+			printf("\tNope\n");
+			exit(8);
 		}
 		i--;
 	}
 
+	printf("\t+Aproved!\n");
+
+	printf("Cheking ft_toupper/lower");
+	i = 0;
+	ft_bzero(b1, 41);
+	ft_memcpy(b1, "AaB0~1@&^09,pw1AzDe\0", 21);
+	while (i != 21)
+	{
+		if (tolower(b1[i]) != ft_tolower(b1[i]))
+		{
+			printf("\tNope\n");
+			exit(9);	
+		}
+		if (toupper(b1[i]) != ft_toupper(b1[i]))
+		{
+			printf("\tNope\n");
+			exit(9);	
+		}
+		i++;
+	}
+
+	printf("\t+Aproved!\n");
+
+	printf("Cheking strchar/strrchar");
+	ft_bzero(b1, 42);
+	ft_strlcpy(b1, "abcd-dcba", 10);
+	if (ft_strchr(b1, 'a') != strchr(b1, 'a')
+		|| ft_strrchr(b1, 'b') != strrchr(b1, 'b'))
+	{
+		printf("\tNope\n");
+		exit(10);
+	}
+
+	printf("\t+Aproved!\n");
+
+	printf("Cheking strncmp\t\t");
+	bzero(b1, 42);	
+	bzero(b2, 42);	
+	strlcpy(b1, "0123456789abcdef", 17);
+	strlcpy(b2, "0123456789abcdef", 17);
+	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	{
+		printf("\tNope\n");
+		exit(11);	
+	}
+	b1[5] += 5;
+	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	{
+		printf("\tNope\n");
+		exit(11);	
+	}
+	b1[5] -= 5;
+	b2[5] += 5;
+	if (ft_strncmp(b1, b2, 16) != ft_strncmp(b1, b2, 16))
+	{
+		printf("\tNope\n");
+		exit(11);	
+	}
+	
 	printf("\t+Aproved!\n");
 
 	printf("Checking functions with null input\n");
@@ -180,8 +239,8 @@ int	main(void)
 	ft_strlen(NULL);
 	ft_strlcpy(NULL, NULL, 42);
 	ft_strlcat(NULL, NULL, 42);
-	
-	printf("\nGG!");
+	// Not applied on strncmp
 
+	printf("GG!\n");
 	return (0);
 }

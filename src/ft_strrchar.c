@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strrchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 16:54:25 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 12:00:20 by rafernan         ###   ########.fr       */
+/*   Created: 2021/10/19 12:23:39 by rafernan          #+#    #+#             */
+/*   Updated: 2021/10/19 12:47:05 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t siz)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*s;
-	char	*d;
-	size_t	tmp;
+	char	*tmp;
 
-	if (dst && src)
+	if (s)
 	{
-		tmp = siz;
-		d = (char *)(dst);
-		while (tmp-- && *d)
-			d++;
-		tmp = siz - (d - dst);
-		s = (char *)(src);
-		if (tmp == 0)
-			return ((d - dst) + ft_strlen(s));
-		tmp = (d - dst);
-		while (*s)
+		tmp = (char *)s;
+		while (*tmp)
+			tmp++;
+		while (tmp != s)
 		{
-			if ((siz - (d - dst)) > 1)
-				*d++ = *s;
-			s++;
+			if (*tmp == c)
+				return (tmp);
+			tmp--;
 		}
-		*d = '\0';
-		return (tmp + (s - src));
 	}
-	return (siz);
+	return (NULL);
 }

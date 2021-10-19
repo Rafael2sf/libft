@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 16:54:25 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 12:00:20 by rafernan         ###   ########.fr       */
+/*   Created: 2021/10/19 12:57:58 by rafernan          #+#    #+#             */
+/*   Updated: 2021/10/19 13:26:12 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t siz)
+int ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*s;
-	char	*d;
-	size_t	tmp;
+	size_t			i;
+	unsigned char	*x;
+	unsigned char	*y;
 
-	if (dst && src)
+	x = (unsigned char *)s1;
+	y = (unsigned char *)s2;
+	i = 0;
+	while (n)
 	{
-		tmp = siz;
-		d = (char *)(dst);
-		while (tmp-- && *d)
-			d++;
-		tmp = siz - (d - dst);
-		s = (char *)(src);
-		if (tmp == 0)
-			return ((d - dst) + ft_strlen(s));
-		tmp = (d - dst);
-		while (*s)
-		{
-			if ((siz - (d - dst)) > 1)
-				*d++ = *s;
-			s++;
-		}
-		*d = '\0';
-		return (tmp + (s - src));
+		if (x[i] == '\0' && y[i] == '\0')
+			break ;
+		if (x[i] > y[i])
+			return (1);
+		if (x[i] < y[i])
+			return (-1);
+		i++;
+		n--;
 	}
-	return (siz);
+	return (0);
 }
