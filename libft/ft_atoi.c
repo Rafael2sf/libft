@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 16:34:21 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/20 17:13:59 by rafernan         ###   ########.fr       */
+/*   Created: 2021/10/19 16:42:42 by rafernan          #+#    #+#             */
+/*   Updated: 2021/10/20 21:37:17 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_atoi(const char *str)
 {
-	char			*str;
-	size_t			len;
-	unsigned int	i;
-	
+	int		i;
+	int		flag;
+	int		nb;
+
 	i = 0;
-	if (!s || !f)
-		return (NULL);
-	len = ft_strlen(s);
-	str = (char *)malloc(len + 1);
-	if (!str)
-		return (NULL);
-	while (i < len)
-	{
-		str[i] = f(i, s[i]);
-		i++;
+	flag = 1;
+	nb = 0;
+	if (str)
+	{		
+		while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+			i++;
+		if (str[i] == '+' || str[i] == '-')
+		{
+			if (str[i] == '-')
+				flag *= -1;
+			i++;
+		}
+		while (str[i] && str[i] >= '0' && str[i] <= '9')
+		{
+			nb = (nb * 10) + (str[i] - '0');
+			i++;
+		}
 	}
-	str[i] = '\0';
-	return (str);
+	return (flag * nb);
 }
