@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/20 15:14:16 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:18:11 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,55 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <strings.h>
 #include <unistd.h>
+#include <limits.h>
+
+void ft_iteri_tester(unsigned int i, char *c)
+{
+	*c += i;
+}
+
+char ft_mapi_tester(unsigned int i, char c)
+{
+	if (i < 5)
+		return (++c);
+	else
+		return (--c);
+}
 
 static  void ft_split_test(char **matrix)
 {
 	char	**tmp;
-
+	size_t	i;
+	
+	i = 0;
 	tmp = matrix;
-	printf("<");
-	while (tmp && *tmp++)
-		printf("%s||", *tmp);
-	printf("<");
+	printf("\t");
+	while (tmp && tmp[i])
+	{
+		printf("%s,", tmp[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+static  void ft_split_free(char **matrix)
+{
+	char	**tmp;
+	size_t	i;
+	
+	i = 0;
+	tmp = matrix;
+	while (tmp && tmp[i])
+	{
+		free(tmp[i]);
+		i++;
+	}
 }
 
 int	main(void)
 {
-	/*
 	int	i;
 
 	printf("Libft tester, simplistic, does not guarante your project will pass!\n");
@@ -345,7 +378,7 @@ int	main(void)
 	free(ptr1);
 	printf("\t+Aproved!\n");
 
-	printf("=ft_strjoin\t");
+	printf("=ft_strjoin");
 	ft_bzero(b1, 42);
 	ft_bzero(b2, 42);
 	ft_strlcpy(b1, "0123456789", 11);
@@ -360,14 +393,93 @@ int	main(void)
 	}
 	free(ptr1);
 	free(ptr2);
-	printf("\t+Aproved!\n");
-	*/
-	char **matrix = NULL;
+	printf("\t\t+Aproved!\n");
 
+	printf("=ft_split (Shows your result separated by , )\n");
+	char **matrix = NULL;
 	matrix = ft_split("    Hello World This is a bunch of text ", ' ');
 	ft_split_test(matrix);
+	ft_split_free(matrix);
+	matrix = ft_split(" 123 321 abcdef [!]", ' ');
+	ft_split_test(matrix);
+	ft_split_free(matrix);
+	matrix = ft_split("", ' ');
+	ft_split_test(matrix);
+	ft_split_free(matrix);
+	matrix = ft_split("Hi", ' ');
+	ft_split_test(matrix);
+	ft_split_free(matrix);
+	matrix = ft_split(" Y Y Y ", ' ');
+	ft_split_test(matrix);
+	ft_split_free(matrix);
+
+	printf("=ft_itoa");
+	ptr1 = ft_itoa(-1);
+	if (ft_strncmp(ptr1, "-1", 2) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	ptr1 = ft_itoa(-112312);
+	if (ft_strncmp(ptr1, "-112312", 7) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	ptr1 = ft_itoa(INT_MIN);
+	if (ft_strncmp(ptr1, "-2147483648", 11) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	ptr1 = ft_itoa(INT_MAX);
+	if (ft_strncmp(ptr1, "2147483647", 10) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	ptr1 = ft_itoa(0);
+	if (ft_strncmp(ptr1, "0", 1) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	ptr1 = ft_itoa(38129);
+	if (ft_strncmp(ptr1, "38129", 2) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr1);
+	printf("\t\t+Aproved!\n");
+
+	printf("=ft_strmapi");
+	ft_bzero(b1, 42);
+	ft_strlcpy(b1, "abcdef123", 10);
+	ptr2 = ft_strmapi(b1, ft_mapi_tester);
+	if (ft_strncmp(ptr2, "bcdefe012", 10) != 0)
+	{
+		printf("\tNope\n");
+		exit(17);
+	}
+	free(ptr2);
+
+	printf("\t\t+Aproved!\n");
+
+	printf("=ft_striteri");
+	ft_striteri(ptr2, ft_iteri_tester);
+	if (ft_strncmp(ptr2, "bdfhjj68:", 10) != 0)
+	{
+		printf("\tNope\n");
+		exit(18);
+	}
+	printf("\t\t+Aproved!\n");
 	
-	/*
 	printf("Checking all with NULL");
 	ft_bzero(NULL, 42);
 	ft_memset(NULL, 0, 42);
@@ -386,10 +498,7 @@ int	main(void)
 	ft_strdup(NULL);
 	ft_substr(NULL, 42, 42);
 	ft_strjoin(NULL, NULL);
-
+	ft_split(NULL, 42);
 	printf("\tGG!\n");
-	
-	i = 0;
-	*/
 	return (0);
 }
