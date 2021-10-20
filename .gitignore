@@ -2,3 +2,4 @@ test
 .vscode
 
 /obj
+/src/libftester
