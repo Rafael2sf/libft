@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/20 17:18:11 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:27:47 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -499,6 +499,8 @@ int	main(void)
 	ft_substr(NULL, 42, 42);
 	ft_strjoin(NULL, NULL);
 	ft_split(NULL, 42);
+	ft_striteri(NULL, NULL);
+	ft_strmapi(NULL, NULL);
 	printf("\tGG!\n");
 	return (0);
 }
