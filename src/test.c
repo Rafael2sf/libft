@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:33:19 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/19 17:53:05 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:14:16 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,28 @@
 #include <string.h>
 #include <unistd.h>
 
+static  void ft_split_test(char **matrix)
+{
+	char	**tmp;
+
+	tmp = matrix;
+	printf("<");
+	while (tmp && *tmp++)
+		printf("%s||", *tmp);
+	printf("<");
+}
+
 int	main(void)
 {
+	/*
 	int	i;
 
+	printf("Libft tester, simplistic, does not guarante your project will pass!\n");
+
 	i = -275;
+
+	printf("\n\t -- Funcs --\t\n\n");
+
 	printf("=ft_is...\t");
 	while (i != 275)
 	{
@@ -86,7 +103,7 @@ int	main(void)
 	}
 	printf("\t+Aproved!\n");
 
-	printf("=ft_memset\t");
+	printf("=ft_memcpy\t");
 	while (i != 41)
 	{
 		ft_memset(b1, 'a', i);
@@ -261,14 +278,96 @@ int	main(void)
 	printf("\t+Aproved!\n");
 
 	printf("=ft_atoi\t");
-	printf("\t?No test\n");
+
+	if ((atoi("-125") != ft_atoi("-125"))
+	|| (atoi("0") != ft_atoi("0"))
+	|| (atoi("") != ft_atoi(""))
+	|| (atoi("42") != ft_atoi("42"))
+	|| (atoi("     -123") != ft_atoi("     -123"))
+	|| (atoi("  a123") != ft_atoi("   a123"))
+	|| (atoi("zyx") != ft_atoi("zyx")))
+	{
+		printf("\tNope\n");
+		exit(14);			
+	}
+
+	printf("\t+Aproved!\n");
 
 	printf("=ft_calloc\t");
 	printf("\t?No test\n");
 
-	char *tmp = ft_strdup(b1);
-	printf("\n%s\n", tmp);
+	printf("=ft_strdup\t");
+
+	char *ptr1;
+	char *ptr2;
+	ft_bzero(b1, 42);
+	ptr1 = ft_strdup(b1);
+	ptr2 = strdup(b1);
+	if (strcmp(ptr1, ptr2) != 0)
+	{
+		printf("\tNope\n");
+		exit(14);
+	}
+	free(ptr1);
+	free(ptr2);
+	ft_strlcpy(b1, "abcdef123", 10);
+	ptr1 = ft_strdup(b1);
+	ptr2 = strdup(b1);
+	if (strcmp(ptr1, ptr2) != 0)
+	{
+		printf("\tNope\n");
+		exit(14);
+	}
+	free(ptr1);
+	free(ptr2);
+	ptr1 = ft_strdup("");
+	ptr2 = strdup("");
+	if (strcmp(ptr1, ptr2) != 0)
+	{
+		printf("\tNope\n");
+		exit(14);
+	}
+	free(ptr1);
+	free(ptr2);
+	printf("\t+Aproved!\n");
+
+	printf("\n\t -- Extra --\t\n\n");
+
+	printf("=ft_substr\t");
+	bzero(b1, 42);
+	strlcpy(b1, "0123456789abcdef", 17);
+	ptr1 = ft_substr(b1, 5, 25);
+	if (ft_strncmp(ptr1, "56789abcdef", 10) != 0)
+	{
+		printf("\tNope\n");
+		exit(15);
+	}
+	free(ptr1);
+	printf("\t+Aproved!\n");
+
+	printf("=ft_strjoin\t");
+	ft_bzero(b1, 42);
+	ft_bzero(b2, 42);
+	ft_strlcpy(b1, "0123456789", 11);
+	ft_strlcpy(b2, "abcdef", 7);
+	ptr1 = ft_strjoin(b1, b2);
+	ptr2 = ft_strjoin(ptr1, "\0");
+	if (ft_strncmp(ptr1, "0123456789abcdef", 17) != 0
+		|| ft_strncmp(ptr2, "0123456789abcdef", 17) != 0)
+	{
+		printf("\tNope\n");
+		exit(16);
+	}
+	free(ptr1);
+	free(ptr2);
+	printf("\t+Aproved!\n");
+	*/
+	char **matrix = NULL;
+
+	matrix = ft_split("    Hello World This is a bunch of text ", ' ');
+	ft_split_test(matrix);
 	
+	/*
 	printf("Checking all with NULL");
 	ft_bzero(NULL, 42);
 	ft_memset(NULL, 0, 42);
@@ -283,6 +382,14 @@ int	main(void)
 	ft_memchr(NULL, 42, 42);
 	// Not applied on memcmp
 	ft_strnstr(NULL,NULL, 42);
+	ft_atoi(NULL);
+	ft_strdup(NULL);
+	ft_substr(NULL, 42, 42);
+	ft_strjoin(NULL, NULL);
+
 	printf("\tGG!\n");
+	
+	i = 0;
+	*/
 	return (0);
 }

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strttrim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 16:54:41 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/20 09:37:40 by rafernan         ###   ########.fr       */
+/*   Created: 2021/10/20 12:26:42 by rafernan          #+#    #+#             */
+/*   Updated: 2021/10/20 12:35:10 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_calloc(size_t count, size_t size)
+/*
+TO DO
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*buffer;
-
-	buffer = (char *)malloc(count * size);
-	if (buffer)
-	{
-		ft_bzero(buffer, size * count);
-		return (buffer);
-	}
-	return (NULL);
 }
+*/
