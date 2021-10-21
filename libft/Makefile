@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/21 11:34:36 by rafernan          #+#    #+#              #
+#    Updated: 2021/10/21 11:36:23 by rafernan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=		libft.a
 RM=			rm -f
 
@@ -43,7 +55,19 @@ SRCS=		\
 			ft_tolower.c\
 			ft_toupper.c
 
+SRCSB=		\
+			ft_lstnew.c\
+			ft_lstadd_front.c\
+			ft_lstsize.c\
+			ft_lstlast.c\
+			ft_lstadd_back.c\
+			ft_lstdelone\
+			ft_lstclear\
+			ft_lstiter.c\
+			ft_lstmap.c
+
 OBJS=		$(patsubst %.c,%.o,$(SRCS))
+OBJSB=		$(patsubst %.c,%.o,$(SRCSB))
 
 all: $(NAME)
 
@@ -53,6 +77,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 
+bonus: $(OBJSB)
+	ar rcs $(NAME) $(OBJSB)
+
 clean:
 	$(RM) $(OBJS)
 
@@ -61,4 +88,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
