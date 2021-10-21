@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 10:55:27 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/21 11:00:53 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:39:05 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_lstsize(t_list *lst)
 	i = 0;
 	if (!lst)
 		return (0);
-	tmp = list;
+	tmp = lst;
 	while (tmp)
 	{
 		i++;

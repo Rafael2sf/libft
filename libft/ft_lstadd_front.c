@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 10:48:23 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/21 11:01:32 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:51:49 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!list || !*list || !new)
+	if (!lst || !new)
 		return ;
-	(new->next) = (*list);
-	(*list) = new;
+	if (*lst)
+		(new->next) = (*lst);
+	else
+		(new->next) = NULL;
+	(*lst) = new;
 }

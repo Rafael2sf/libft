@@ -6,7 +6,7 @@
 #    By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:34:36 by rafernan          #+#    #+#              #
-#    Updated: 2021/10/21 11:36:23 by rafernan         ###   ########.fr        #
+#    Updated: 2021/10/21 12:15:48 by rafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,8 @@ SRCSB=		\
 			ft_lstsize.c\
 			ft_lstlast.c\
 			ft_lstadd_back.c\
-			ft_lstdelone\
-			ft_lstclear\
+			ft_lstdelone.c\
+			ft_lstclear.c\
 			ft_lstiter.c\
 			ft_lstmap.c
 
@@ -76,12 +76,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^
+	ranlib $@
 
 bonus: $(OBJSB)
-	ar rcs $(NAME) $(OBJSB)
+	ar rcs $(NAME) $^
+	ranlib $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJSB)
 
 fclean: clean
 	$(RM) $(NAME)
