@@ -1,7 +1,6 @@
 # LIBFT
 
 #### status: finished
-**⚠️ This projected was builded in macOS and is expected to work in linux world**
 
 # 42 lisbon
 
