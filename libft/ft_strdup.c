@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:36:38 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/20 16:33:52 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/10/27 09:59:03 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *s)
 		str = (char *)malloc(sizeof(char) * (len + 1));
 		if (!str)
 			return (NULL);
-		ft_strlcpy(str, s, len + 1);
+		ft_memcpy(str, s, len);
 		*(str + len) = '\0';
 		return (str);
 	}

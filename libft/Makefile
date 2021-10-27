@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+         #
+#    By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:34:36 by rafernan          #+#    #+#              #
-#    Updated: 2021/10/21 12:15:48 by rafernan         ###   ########.fr        #
+#    Updated: 2021/10/27 10:06:10 by rafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ CFLAGS=		\
 			-Wall\
 			-Werror\
 			-Wextra\
+
+CVARS=		-D BUFFER_SIZE=128
 
 SRCS=		\
 			ft_atoi.c\
@@ -53,7 +55,8 @@ SRCS=		\
 			ft_strtrim.c\
 			ft_substr.c\
 			ft_tolower.c\
-			ft_toupper.c
+			ft_toupper.c\
+			get_next_line.c
 
 SRCSB=		\
 			ft_lstnew.c\
@@ -72,7 +75,7 @@ OBJSB=		$(patsubst %.c,%.o,$(SRCSB))
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CVARS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^
