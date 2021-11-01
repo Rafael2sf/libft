@@ -1,6 +1,8 @@
 # LIBFT
 
-#### status: finished !(MODIFIED)
+```diff
+- ❗ Modified after submit.
+```
 
 # 42 lisbon
 
