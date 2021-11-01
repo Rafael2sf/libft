@@ -1,6 +1,6 @@
 # LIBFT
 
-❗ - Modified after submit.
+❗ Modified after submit.
 
 # 42 lisbon
 
@@ -11,10 +11,10 @@ This project is your very first project as a student at 42. You will need to rec
 ## ℹ️ Usage
 
 ~~~git
-git clone https://github.com/Rafael2sf/libft.git libft_
+git clone https://github.com/Rafael2sf/libft.git libft
 ~~~
 
-and `cd libft_/libft`
+and `cd libft/src`
 
 
 ## 🔨 Build
