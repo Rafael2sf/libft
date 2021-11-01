@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 17:30:26 by rafernan          #+#    #+#             */
-/*   Updated: 2021/11/01 23:02:18 by rafernan         ###   ########.fr       */
+/*   Created: 2021/10/27 21:39:25 by rafernan          #+#    #+#             */
+/*   Updated: 2021/11/01 23:21:15 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_putnbr_b(int fd, ssize_t n, char base, char frmt)
 {
-	char	*str;
-	size_t	x;
-	size_t	y;
-	size_t	i;
+	int	bytes;
 
-	if (!s1 || !set)
-		return (NULL);
-	x = 0;
-	y = ft_strlen(s1);
-	while (s1[x] && ft_is(s1[x], set))
-		x++;
-	while (y > x && ft_is(s1[y - 1], set))
-		y--;
-	str = (char *)malloc(sizeof(char) * (y - x + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (x < y)
-		str[i++] = s1[x++];
-	str[i] = '\0';
-	return (str);
+	bytes = 0;
+	if (n == LONG_MIN)
+	{
+		bytes += write(1, "-", 1);
+		return (ft_putunbr_b(fd, 0x8000000000000000, base, frmt) + bytes);	
+	}
+	if (n < 0)
+	{
+		bytes += write(1, "-", 1);
+		n = (-n);
+	}
+	return (ft_putunbr_b(fd, n, base, frmt) + bytes);
 }

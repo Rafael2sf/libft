@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 10:40:25 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/27 10:06:52 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/11/01 22:43:41 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
 	size_t	s1len;
 	size_t	s2len;
 	char	*ptr;
 
-	i = 0;
 	ptr = NULL;
 	if (!s1 && !s2)
 		return (NULL);

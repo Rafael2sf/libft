@@ -6,13 +6,14 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:59:43 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/27 09:59:58 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/11/01 22:48:25 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*gnl_strdup(const char *s)
+/* Same as ft_strdup except it returns a null pointer instead of a empty string */
+char	*gnl_strdup(const char *s)
 {
 	char	*str;
 	int		len;
