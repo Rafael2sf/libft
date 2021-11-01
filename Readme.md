@@ -1,8 +1,6 @@
 # LIBFT
 
-```diff
-- ❗ Modified after submit.
-```
+❗ - Modified after submit.
 
 # 42 lisbon
 
