@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafernan <rafernan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:12:12 by rafernan          #+#    #+#             */
-/*   Updated: 2021/10/21 11:15:43 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/11/26 12:26:37 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	tmp = *lst;
 	while (tmp)
 	{
-		nxtptr = (tmp->next);
-		del(tmp->content);
+		nxtptr = (tmp->n);
+		del(tmp->v);
 		free(tmp);
 		tmp = nxtptr;
 	}

@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:32:09 by rafernan          #+#    #+#             */
-/*   Updated: 2021/11/26 12:22:45 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/11/26 12:26:56 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 typedef struct s_list
 {
-	void			*content;
-	struct s_list	*next;
+	void			*v;
+	struct s_list	*n;
 }	t_list;
 
 int			ft_isalpha(int c);
