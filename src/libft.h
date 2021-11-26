@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:32:09 by rafernan          #+#    #+#             */
-/*   Updated: 2021/11/01 23:26:58 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/11/26 12:22:45 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+# define FD_MAX 128
 
 typedef struct s_list
 {
@@ -57,8 +59,7 @@ void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 int			ft_putchar(int fd, char c);
-ssize_t		ft_putstr(int fd, char *s);
-ssize_t		ft_putendl(int fd, char *s);
+size_t		ft_putstr(int fd, const char *s);
 int			ft_putaddr(int fd, size_t addr);
 int			ft_putnbr(int fd, ssize_t n);
 int			ft_putnbr_b(int fd, ssize_t n, char base, char frmt);

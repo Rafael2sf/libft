@@ -6,45 +6,126 @@
 #    By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:34:36 by rafernan          #+#    #+#              #
-#    Updated: 2021/11/01 23:01:46 by rafernan         ###   ########.fr        #
+#    Updated: 2021/11/26 12:23:01 by rafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=		libft.a
-RM=			rm -f
+############# STATIC LIBRARY ############
 
-CC=			gcc
-CFLAGS=		\
-			-Wall\
-			-Werror\
-			-Wextra\
+NAME	=		libft.a
 
-CVARS=
+################### TERMINAL ############
 
-SRCS=		$(shell find . -maxdepth 1 -name "*.c")
+RMV		=		rm -f
+MKD		=		mkdir
+PRT		=		printf
+MKE		=		make
+CPY		=		cp
 
-OBJS=		$(patsubst %.c,%.o,$(SRCS))
-OBJSB=		$(patsubst %.c,%.o,$(SRCSB))
+################### COLORS ##############
+
+--GRN	=		\033[32m
+--RED	=		\033[31m
+--WHT	=		\033[39m
+
+################### DIRS ################
+
+_SRC	=
+_OBJ	=
+_LIB	=
+_BIN	=
+
+################### COMPILER ############
+
+CC		=		gcc
+AR		=		ar rcs
+CF		=		-Wall -Werror -Wextra
+
+################### FILES ###############
+
+SRCS_	=		\
+				ft_atoi.c \
+				ft_bzero.c \
+				ft_calloc.c \
+				ft_is.c \
+				ft_isalnum.c \
+				ft_isalpha.c \
+				ft_isascii.c \
+				ft_isdigit.c \
+				ft_isprint.c \
+				ft_itoa.c \
+				ft_lstadd_back.c \
+				ft_lstadd_front.c \
+				ft_lstclear.c \
+				ft_lstdelone.c \
+				ft_lstiter.c \
+				ft_lstlast.c \
+				ft_lstmap.c \
+				ft_lstnew.c \
+				ft_lstsize.c \
+				ft_memchr.c \
+				ft_memcmp.c \
+				ft_memcpy.c \
+				ft_memmove.c \
+				ft_memset.c \
+				ft_printf.c \
+				ft_putaddr.c \
+				ft_putchar.c \
+				ft_putnbr.c \
+				ft_putnbr_b.c \
+				ft_putstr.c \
+				ft_putunbr_b.c \
+				ft_split.c \
+				ft_strchr.c \
+				ft_strdup.c \
+				ft_striteri.c \
+				ft_strjoin.c \
+				ft_strlcat.c \
+				ft_strlcpy.c \
+				ft_strlen.c \
+				ft_strmapi.c \
+				ft_strncmp.c \
+				ft_strnstr.c \
+				ft_strrchr.c \
+				ft_strtrim.c \
+				ft_substr.c \
+				ft_tolower.c \
+				ft_toupper.c \
+				get_next_line.c
+
+SRCS	=		$(addprefix $(_SRC), $(SRCS_))
+OBJS	=		$(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
+
+################### RULES ###############
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(CVARS) -c $< -o $@
+$(_OBJ)%.o: $(_SRC)%.c
+	$(CC) $(CF) -c $< -o $@
 
-$(NAME): $(OBJS)
-	ar rcs $@ $^
-	ranlib $@
 
-bonus: $(OBJSB)
-	ar rcs $(NAME) $^
-	ranlib $(NAME)
+$(_LIB)$(NAME): $(OBJS)
+	$(AR) $@ $(OBJS)
+
+################### STRUCTURE ###########
+
+$(_OBJ):
+	$(MKD) $@
+
+$(_LIB):
+	$(MKD) $@
+
+$(_SRC):
+	$(MKD) $@
+
+################### CLEAN ###############
 
 clean:
-	$(RM) $(OBJS) $(OBJSB)
+	$(RMV) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RMV) $(_LIB)$(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
