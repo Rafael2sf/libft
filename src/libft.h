@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:32:09 by rafernan          #+#    #+#             */
-/*   Updated: 2021/11/26 12:26:56 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:05:45 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 64
 # endif
 
-# define FD_MAX 128
+# define FD_MAX 16
 
 typedef struct s_list
 {
@@ -72,7 +72,7 @@ char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 char		*ft_strtrim(char const *s1, char const *set);
-	
+
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
@@ -83,7 +83,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-char		*get_next_line(int fd);
+char		*ft_getnl(int fd);
 int			ft_printf(const char *format, ...);
 
 #endif

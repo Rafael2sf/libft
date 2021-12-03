@@ -6,7 +6,7 @@
 #    By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:34:36 by rafernan          #+#    #+#              #
-#    Updated: 2021/11/26 12:23:01 by rafernan         ###   ########.fr        #
+#    Updated: 2021/12/03 12:08:26 by rafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ SRCS_	=		\
 				ft_substr.c \
 				ft_tolower.c \
 				ft_toupper.c \
-				get_next_line.c
+				ft_getnl.c
 
 SRCS	=		$(addprefix $(_SRC), $(SRCS_))
 OBJS	=		$(patsubst $(_SRC)%.c,$(_OBJ)%.o,$(SRCS))
@@ -102,7 +102,6 @@ all: $(NAME)
 
 $(_OBJ)%.o: $(_SRC)%.c
 	$(CC) $(CF) -c $< -o $@
-
 
 $(_LIB)$(NAME): $(OBJS)
 	$(AR) $@ $(OBJS)

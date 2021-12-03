@@ -6,7 +6,7 @@
 /*   By: rafernan <rafernan@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 21:39:25 by rafernan          #+#    #+#             */
-/*   Updated: 2021/11/01 23:21:15 by rafernan         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:05:40 by rafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putnbr_b(int fd, ssize_t n, char base, char frmt)
 	if (n == LONG_MIN)
 	{
 		bytes += write(1, "-", 1);
-		return (ft_putunbr_b(fd, 0x8000000000000000, base, frmt) + bytes);	
+		return (ft_putunbr_b(fd, 0x8000000000000000, base, frmt) + bytes);
 	}
 	if (n < 0)
 	{
