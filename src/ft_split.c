@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_split_size(char const *s, char c)
+static size_t	ft_split_size(char const *s, char *set)
 {
 	char	*str;
 	size_t	i;
@@ -21,22 +21,22 @@ static size_t	ft_split_size(char const *s, char c)
 	j = 0;
 	i = 0;
 	str = (char *)(s);
-	while (*(str + i) && *(str + i) == c)
+	while (*(str + i) && ft_is(str[i], set))
 		i++;
 	if (!*(str + i))
 		return (0);
 	j++;
 	while (*(str + i))
 	{
-		if (*(str + i) == c && *(str + i + 1)
-			&& *(str + i + 1) != c)
+		if (ft_is(str[i], set) && *(str + i + 1)
+			&& !ft_is(str[i + 1], set))
 			j++;
 		i++;
 	}
 	return (j);
 }
 
-static char	**ft_split_helper(char **ptr, char const *s, char c, size_t size)
+static char	**ft_split_helper(char **p, char const *s, char *set, size_t size)
 {
 	char	*str;
 	size_t	i;
@@ -46,33 +46,33 @@ static char	**ft_split_helper(char **ptr, char const *s, char c, size_t size)
 	str = (char *)(s);
 	while (*str && j < size)
 	{
-		while (*str && *str == c)
+		while (*str && ft_is(*str, set))
 			str++;
 		i = 0;
-		while (*(str + i) && *(str + i) != c)
+		while (*(str + i) && !ft_is(str[i], set))
 			i++;
-		ptr[j] = (char *)malloc(sizeof(char) * (i + 1));
-		if (!ptr[j])
+		p[j] = (char *)malloc(sizeof(char) * (i + 1));
+		if (!p[j])
 			return (NULL);
-		ft_strlcpy(ptr[j], str, i + 1);
+		ft_strlcpy(p[j], str, i + 1);
 		j++;
 		str = (str + i);
 	}
-	ptr[j] = NULL;
-	return (ptr);
+	p[j] = NULL;
+	return (p);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *set)
 {
 	char	**tmp;
 	size_t	size;
 
 	if (!s)
 		return (NULL);
-	size = ft_split_size(s, c);
+	size = ft_split_size(s, set);
 	tmp = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!tmp)
 		return (NULL);
-	ft_split_helper(tmp, s, c, size);
+	ft_split_helper(tmp, s, set, size);
 	return (tmp);
 }
