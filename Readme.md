@@ -38,10 +38,3 @@ make bonus
 + In most cases you can choose to protect your functions from null pointers or not  
 
 </br>
-
-<h2> Grade </h2>
-
-### ⭐ 125%
-Mandatory + bonus
-
-5 days
